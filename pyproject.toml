@@ -52,11 +52,12 @@ dev = [
 ]
 testing = [
   "deptry>=0.12",
-  "pytest>=7.4",
+  "pytest>=9",
   "singer-sdk[testing]",
 ]
 typing = [
   "mypy>=1",
+  "ty>=0.0.8",
   "types-requests>=2.32",
 ]
 
@@ -96,22 +97,28 @@ lint.pydocstyle.convention = "google"
 
 [tool.deptry.package_module_name_map]
 mypy = "mypy"
+ty = "ty"
 types-requests = "requests"
 
 [tool.pyproject-fmt]
 max_supported_python = "3.14"
 
-[tool.pytest.ini_options]
-addopts = "-vvv"
+[tool.pytest]
+addopts = [
+  "-vvv",
+  "-ra",
+  "--strict-config",
+  "--strict-markers",
+]
 filterwarnings = [
   "error",
   "default:No records were available to test:UserWarning",
   "default:Fields in transformed catalog but not in records:UserWarning",
-  # Deprecation message introduced in Python 3.14. Upstream issue: https://github.com/python-attrs/cattrs/issues/635
-  "default:'_UnionGenericAlias' is deprecated and slated for removal in Python 3.17:DeprecationWarning",
-  # Deprecation message introduced in Python 3.14. Upstream PR: https://github.com/litl/backoff/pull/220
-  "default:'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16:DeprecationWarning",
 ]
+log_level = "INFO"
+minversion = "9"
+testpaths = [ "tests" ]
+xfail_strict = true
 
 [tool.tox]
 min_version = "4.22"
@@ -146,9 +153,23 @@ commands = [
       "tests",
     ], extend = true },
   ],
+  [
+    "ty",
+    "check",
+    { replace = "posargs", default = [
+      "tap_clinicaltrials",
+      "tests",
+    ], extend = true },
+  ],
 ]
 
 [tool.mypy]
+enable_error_code = [
+  "ignore-without-code",
+  "redundant-expr",
+  "truthy-bool",
+]
+strict = true
 warn_no_return = true
 warn_redundant_casts = true
 warn_return_any = true
