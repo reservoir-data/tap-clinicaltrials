@@ -132,12 +132,6 @@ env_list = [
   "3.10",
 ]
 
-[tool.tox.env_run_base]
-runner = "uv-venv-lock-runner"
-pass_env = [ "TAP_CLINICALTRIALS_*" ]
-dependency_groups = [ "testing" ]
-commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
-
 [tool.tox.env.dependencies]
 dependency_groups = [ "testing" ]
 commands = [ [ "deptry", "." ] ]
@@ -162,6 +156,12 @@ commands = [
     ], extend = true },
   ],
 ]
+
+[tool.tox.env_run_base]
+runner = "uv-venv-lock-runner"
+pass_env = [ "TAP_CLINICALTRIALS_*" ]
+dependency_groups = [ "testing" ]
+commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
 
 [tool.mypy]
 enable_error_code = [
