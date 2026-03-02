@@ -39,7 +39,6 @@ dependencies = [
   "requests-cache>=1,<2",
   "singer-sdk~=0.53.2",
 ]
-
 urls.Documentation = "https://github.com/edgarrmondragon/tap-clinicaltrials#readme"
 urls.Homepage = "https://github.com/edgarrmondragon/tap-clinicaltrials"
 urls.Repository = "https://github.com/edgarrmondragon/tap-clinicaltrials"
@@ -61,12 +60,11 @@ typing = [
   "types-requests>=2.32",
 ]
 
-[tool.hatch.version]
-source = "vcs"
+[tool.hatch]
+version.source = "vcs"
 
 [tool.ruff]
 line-length = 160
-
 lint.select = [
   "ALL",
 ]
@@ -77,7 +75,6 @@ lint.ignore = [
   "ISC001", # single-line-implicit-string-concatenation
   "PD",     # pandas-vet
 ]
-
 lint.per-file-ignores."tests/*" = [
   "ANN201", # missing-return-type-public-function
   "S101",   # assert
@@ -95,10 +92,10 @@ lint.isort.required-imports = [
 ]
 lint.pydocstyle.convention = "google"
 
-[tool.deptry.package_module_name_map]
-mypy = "mypy"
-ty = "ty"
-types-requests = "requests"
+[tool.deptry]
+package_module_name_map.mypy = "mypy"
+package_module_name_map.ty = "ty"
+package_module_name_map.types-requests = "requests"
 
 [tool.pyproject-fmt]
 max_supported_python = "3.14"
@@ -131,14 +128,10 @@ env_list = [
   "3.11",
   "3.10",
 ]
-
-[tool.tox.env.dependencies]
-dependency_groups = [ "testing" ]
-commands = [ [ "deptry", "." ] ]
-
-[tool.tox.env.typing]
-dependency_groups = [ "testing", "typing" ]
-commands = [
+env.dependencies.dependency_groups = [ "testing" ]
+env.dependencies.commands = [ [ "deptry", "." ] ]
+env.typing.dependency_groups = [ "testing", "typing" ]
+env.typing.commands = [
   [
     "mypy",
     "--strict",
@@ -156,12 +149,10 @@ commands = [
     ], extend = true },
   ],
 ]
-
-[tool.tox.env_run_base]
-runner = "uv-venv-lock-runner"
-pass_env = [ "TAP_CLINICALTRIALS_*" ]
-dependency_groups = [ "testing" ]
-commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
+env_run_base.runner = "uv-venv-lock-runner"
+env_run_base.pass_env = [ "TAP_CLINICALTRIALS_*" ]
+env_run_base.dependency_groups = [ "testing" ]
+env_run_base.commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
 
 [tool.mypy]
 enable_error_code = [
