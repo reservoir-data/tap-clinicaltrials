@@ -43,7 +43,7 @@ class Studies(RESTStream[str]):
         self,
         context: Context | None,
         next_page_token: str | None,
-    ) -> dict[str, t.Any] | str:
+    ) -> dict[str, t.Any]:
         """Return a dictionary of parameters to use in the request URL.
 
         Args:
