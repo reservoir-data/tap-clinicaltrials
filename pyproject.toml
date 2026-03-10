@@ -37,7 +37,7 @@ dynamic = [
 dependencies = [
   "requests>=2,<3",
   "requests-cache>=1,<2",
-  "singer-sdk~=0.53.2",
+  "singer-sdk~=0.54.0a4",
 ]
 urls.Documentation = "https://github.com/edgarrmondragon/tap-clinicaltrials#readme"
 urls.Homepage = "https://github.com/edgarrmondragon/tap-clinicaltrials"
@@ -109,8 +109,9 @@ addopts = [
 ]
 filterwarnings = [
   "error",
-  "default:No records were available to test:UserWarning",
-  "default:Fields in transformed catalog but not in records:UserWarning",
+  "once:No records were available to test:UserWarning",
+  "once:Fields in transformed catalog but not in records:UserWarning",
+  "once:Python 3.10 will reach its end of life:FutureWarning",
 ]
 log_level = "INFO"
 minversion = "9"
