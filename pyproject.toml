@@ -42,7 +42,7 @@ dependencies = [
 urls.Documentation = "https://github.com/edgarrmondragon/tap-clinicaltrials#readme"
 urls.Homepage = "https://github.com/edgarrmondragon/tap-clinicaltrials"
 urls.Repository = "https://github.com/edgarrmondragon/tap-clinicaltrials"
-scripts."tap-clinicaltrials" = "tap_clinicaltrials.tap:TapClinicalTrials.cli"
+scripts.tap-clinicaltrials = "tap_clinicaltrials.tap:TapClinicalTrials.cli"
 
 [dependency-groups]
 dev = [
@@ -100,6 +100,20 @@ package_module_name_map.types-requests = "requests"
 [tool.pyproject-fmt]
 max_supported_python = "3.14"
 
+[tool.mypy]
+enable_error_code = [
+  "ignore-without-code",
+  "redundant-expr",
+  "truthy-bool",
+]
+strict = true
+warn_no_return = true
+warn_redundant_casts = true
+warn_return_any = true
+warn_unreachable = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
 [tool.pytest]
 addopts = [
   "-vvv",
@@ -154,17 +168,3 @@ env_run_base.runner = "uv-venv-lock-runner"
 env_run_base.pass_env = [ "TAP_CLINICALTRIALS_*" ]
 env_run_base.dependency_groups = [ "testing" ]
 env_run_base.commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
-
-[tool.mypy]
-enable_error_code = [
-  "ignore-without-code",
-  "redundant-expr",
-  "truthy-bool",
-]
-strict = true
-warn_no_return = true
-warn_redundant_casts = true
-warn_return_any = true
-warn_unreachable = true
-warn_unused_configs = true
-warn_unused_ignores = true
