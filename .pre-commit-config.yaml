@@ -31,11 +31,6 @@ repos:
       - id: ruff-format
         name: Ruff format
 
-  - repo: https://github.com/pre-commit/pre-commit
-    rev: v4.6.0
-    hooks:
-      - id: validate_manifest
-
   - repo: https://github.com/python-jsonschema/check-jsonschema
     rev: 0.37.2
     hooks:
