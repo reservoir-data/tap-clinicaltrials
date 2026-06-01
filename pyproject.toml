@@ -101,18 +101,18 @@ package_module_name_map.types-requests = "requests"
 max_supported_python = "3.14"
 
 [tool.mypy]
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_return_any = true
+warn_unreachable = true
 enable_error_code = [
   "ignore-without-code",
   "redundant-expr",
   "truthy-bool",
 ]
 strict = true
-warn_no_return = true
-warn_redundant_casts = true
-warn_return_any = true
-warn_unreachable = true
 warn_unused_configs = true
-warn_unused_ignores = true
 
 [tool.pytest]
 addopts = [
@@ -135,17 +135,16 @@ xfail_strict = true
 [tool.tox]
 min_version = "4.22"
 env_list = [
-  "dependencies",
-  "typing",
   "3.14",
   "3.13",
   "3.12",
   "3.11",
   "3.10",
+  "dependencies",
+  "typing",
 ]
-env.dependencies.dependency_groups = [ "testing" ]
 env.dependencies.commands = [ [ "deptry", "." ] ]
-env.typing.dependency_groups = [ "testing", "typing" ]
+env.dependencies.dependency_groups = [ "testing" ]
 env.typing.commands = [
   [
     "mypy",
@@ -164,7 +163,8 @@ env.typing.commands = [
     ], extend = true },
   ],
 ]
-env_run_base.runner = "uv-venv-lock-runner"
-env_run_base.pass_env = [ "TAP_CLINICALTRIALS_*" ]
-env_run_base.dependency_groups = [ "testing" ]
+env.typing.dependency_groups = [ "testing", "typing" ]
 env_run_base.commands = [ [ "pytest", { replace = "posargs", default = [ "tests" ], extend = true } ] ]
+env_run_base.dependency_groups = [ "testing" ]
+env_run_base.pass_env = [ "TAP_CLINICALTRIALS_*" ]
+env_run_base.runner = "uv-venv-lock-runner"
