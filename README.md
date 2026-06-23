@@ -6,24 +6,28 @@ Built with the [Meltano Tap SDK](https://sdk.meltano.com) for Singer Taps.
 
 ## Capabilities
 
-* `catalog`
-* `state`
-* `discover`
-* `about`
-* `stream-maps`
+- `catalog`
+- `state`
+- `discover`
+- `activate-version`
+- `about`
+- `stream-maps`
+- `schema-flattening`
+- `batch`
+- `structured-logging`
 
 ## Settings
 
-| Setting             | Required | Default | Description |
+| Setting | Required | Default | Description |
 |:--------------------|:--------:|:-------:|:------------|
-| start_date          | False    | None    | Earliest datetime to get data from |
-| condition           | False    | None    | Conditions or disease query |
-| sponsor             | False    | None    | Sponsor query |
-| stream_maps         | False    | None    | Config object for stream maps capability. For more information check out [Stream Maps](https://sdk.meltano.com/en/latest/stream_maps.html). |
-| stream_map_config   | False    | None    | User-defined config values to be used within map expressions. |
-| flattening_enabled  | False    | None    | 'True' to enable schema flattening and automatically expand nested properties. |
-| flattening_max_depth| False    | None    | The max depth to flatten schemas. |
-| batch_config        | False    | None    |             |
+| start_date | False | None | Earliest datetime to get data from |
+| condition | False | None | Conditions or disease query |
+| sponsor | False | None | Sponsor query |
+| stream_maps | False | None | Config object for stream maps capability. For more information check out [Stream Maps](https://sdk.meltano.com/en/latest/stream_maps.html). |
+| stream_map_config | False | None | User-defined config values to be used within map expressions. |
+| flattening_enabled | False | None | 'True' to enable schema flattening and automatically expand nested properties. |
+| flattening_max_depth| False | None | The max depth to flatten schemas. |
+| batch_config | False | None | |
 
 A full list of supported settings and capabilities is available by running: `tap-clinicaltrials --about`
 
@@ -49,13 +53,11 @@ Not yet available.
 python3 -m pip install --upgrade tap-clinicaltrials
 ```
 
-### With [pipx][pipx]
+### With [pipx]
 
 ```bash
 pipx install tap-clinicaltrials
 ```
-
-[pipx]: https://github.com/pypa/pipx
 
 ### From source
 
@@ -150,3 +152,5 @@ hatch run sync:console -- --about --format=json
 
 See the [dev guide](https://sdk.meltano.com/en/latest/dev_guide.html) for more instructions on how to use the SDK to
 develop your own taps and targets.
+
+[pipx]: https://github.com/pypa/pipx

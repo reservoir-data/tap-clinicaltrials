@@ -18,12 +18,12 @@ repos:
       - id: trailing-whitespace
 
   - repo: https://github.com/tox-dev/pyproject-fmt
-    rev: "v2.23.0"
+    rev: "v2.25.0"
     hooks:
       - id: pyproject-fmt
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.15.15"
+    rev: "v0.15.18"
     hooks:
       - id: ruff-check
         name: Ruff lint
@@ -32,7 +32,7 @@ repos:
         name: Ruff format
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.37.2
+    rev: 0.37.3
     hooks:
     - id: check-meltano
     - id: check-github-workflows
@@ -42,7 +42,12 @@ repos:
       - pyjson5==2.0.1
 
   - repo: https://github.com/astral-sh/uv-pre-commit
-    rev: 0.11.17
+    rev: 0.11.23
     hooks:
     - id: uv-lock
     - id: uv-sync
+
+  - repo: https://github.com/hukkin/mdformat
+    rev: 1.0.0  # Use the ref you want to point at
+    hooks:
+    - id: mdformat
